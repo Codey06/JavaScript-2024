@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>094 Singleton-patten</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    // const Singleton=(function(){
+    //     let instance=null;
+    //     function getInstance(){
+    //         if(instance===null){
+    //             instance=new Singleton();
+    //         }
+    //         return instance;
+    //     }
+    //     return{
+    //         getInstance: getInstance
+    //     }
+    // })();
+
+
+
+    const Singleton=(function(){
+        let instance=null;
+        function createInstance(){
+            const object=new Object({name:'barad'});
+            return object;
+        }
+        return{
+            getInstance: function(){
+                if(!instance){
+                    instance=createInstance();
+                }
+                return instance;
+            }
+        }
+            
+    })();
+    const instanceA=Singleton.getInstance();
+    const instanceB=Singleton.getInstance();
+    console.log(instanceA);
+    // console.log(Singleton.getInstance());
+    console.log(instanceA=== instanceB);
+</script>
