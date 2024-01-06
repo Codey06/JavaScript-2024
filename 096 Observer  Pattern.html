@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>096 Observer Pattern</title>
+</head>
+<body>
+    <h1>JavaScript Sandbox: Patterns</h1>
+
+    <button class="sub-ms">Subscribe to MilliSeconds</button>
+    <button class="unsub-ms">Ussubscribe from MilliSeconds</button>
+    <br><br>
+    <button class="sub-s">Subscribe toSeconds</button>
+    <button class="unsub-s">Ussubscribe from Seconds</button>
+    <br><br>
+    <button class="fire">Fire</button>
+</body>
+</html>
+
+<script>
+    // ES5 OOP
+//     function EventObserve(){
+//         this.observers=[];
+//     }
+//     EventObserve.prototype={
+//         subscribe:function(fn){
+//             this.observers.push(fn);
+//             console.log(`Your are now Subscribed to ${fn.name}`)
+//         },
+    
+//         /*  Filter out from the list whatever matches the callback function.
+//         If there is no match, the callback gets tp easy on the list.
+//         the filter returns a new list and reassigns the list of observers.
+        
+// */
+//         unsubscribe:function(fn){
+//             this.observers=this.observers.filter(function(item){
+//                 if(item !==fn){
+//                     return item;
+//                 }
+
+//             });
+//             console.log(`Your are now Unsubscribed from ${fn.name}`);
+//         },
+//         fire:function(){
+//             this.observers.forEach(function(item){
+//                 item.call();
+//             });
+//         }
+//         }
+//         const click=new EventObserve();
+
+//         // Event Listners
+//         document.querySelector('.sub-ms').addEventListener('click', function(){
+//             click.subscribe(getCurMilliseconds);
+//         });
+//         document.querySelector('.unsub-ms').addEventListener('click', function(){
+//             click.unsubscribe(getCurMilliseconds);
+//         });
+//         document.querySelector('.sub-s').addEventListener('click', function(){
+//             click.subscribe(getCurSeconds);
+//         });
+//         document.querySelector('.unsub-s').addEventListener('click', function(){
+//             click.unsubscribe(getCurSeconds);
+//         });
+
+
+//         document.querySelector('.fire').addEventListener('click', function(){
+//             click.fire();
+//         });
+        
+//         // Click Handler
+//         const getCurMilliseconds=function(){
+//             console.log(`Current Milliseconds: ${new Date ().getMilliseconds()}`);
+//         }
+//         const getCurSeconds=function(){
+//             console.log(`Current seconds: ${new Date ().getSeconds()}`);
+//         }
+ 
+
+        // ES6 Classes
+        class EventObserve{
+            constructor(){
+                this.observers=[];
+            }
+            subscribe(fn){
+                this.observers.push(fn);
+                console.log(`Your are now Subscribed to ${fn.name}`)
+            }
+            unsubscribe(fn){
+                this.observers=this.observers.filter(function(item){
+                if(item !==fn){
+                    return item;
+                }
+
+            });
+            console.log(`Your are now Unsubscribed from ${fn.name}`);
+
+            }
+            fire(){
+                this.observers.forEach(function(item){
+                    item.call();
+                });
+            }
+      
+    }
+//     EventObserve.prototype={
+//         subscribe:function(fn){
+//             this.observers.push(fn);
+//             console.log(`Your are now Subscribed to ${fn.name}`)
+//         },
+    
+//         /*  Filter out from the list whatever matches the callback function.
+//         If there is no match, the callback gets tp easy on the list.
+//         the filter returns a new list and reassigns the list of observers.
+        
+// */
+//         unsubscribe:function(fn){
+//             this.observers=this.observers.filter(function(item){
+//                 if(item !==fn){
+//                     return item;
+//                 }
+
+//             });
+//             console.log(`Your are now Unsubscribed from ${fn.name}`);
+//         },
+//         fire:function(){
+//             this.observers.forEach(function(item){
+//                 item.call();
+//             });
+//         }
+//         }
+        const click=new EventObserve();
+
+        // Event Listners
+        document.querySelector('.sub-ms').addEventListener('click', function(){
+            click.subscribe(getCurMilliseconds);
+        });
+        document.querySelector('.unsub-ms').addEventListener('click', function(){
+            click.unsubscribe(getCurMilliseconds);
+        });
+        document.querySelector('.sub-s').addEventListener('click', function(){
+            click.subscribe(getCurSeconds);
+        });
+        document.querySelector('.unsub-s').addEventListener('click', function(){
+            click.unsubscribe(getCurSeconds);
+        });
+
+
+        document.querySelector('.fire').addEventListener('click', function(){
+            click.fire();
+        });
+        
+        // Click Handler
+        const getCurMilliseconds=function(){
+            console.log(`Current Milliseconds: ${new Date ().getMilliseconds()}`);
+        }
+        const getCurSeconds=function(){
+            console.log(`Current seconds: ${new Date ().getSeconds()}`);
+        }
+
+</script>
